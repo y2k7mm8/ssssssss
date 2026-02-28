@@ -11,7 +11,7 @@ export default {
         accent: "#14B8A6",
         accent2: "#0EA5E9",
         stroke: "rgba(17,24,39,0.10)",
-        stroke2: "rgba(17,24,39,0.06)"
+        stroke2: "rgba(17,24,39,0.06)",
       },
       boxShadow: {
         soft: "0 10px 30px rgba(17,24,39,0.10)",

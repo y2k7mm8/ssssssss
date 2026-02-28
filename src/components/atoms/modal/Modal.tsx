@@ -32,8 +32,13 @@ export function Modal({
     <div className="fixed inset-0 z-[60]">
       <div className="absolute inset-0 bg-black/30" onClick={onClose} />
       <div className="absolute inset-0 flex items-center justify-center p-4">
-        <div className={cn("w-full rounded-xl2 border border-stroke2 bg-surface shadow-card", widthClass)}>
-          {(title || onClose) && (
+        <div
+          className={cn(
+            "w-full rounded-xl2 border border-stroke2 bg-surface shadow-card",
+            widthClass,
+          )}
+        >
+          {title && (
             <div className="p-5 border-b border-stroke2 flex items-center justify-between gap-3">
               <div className="text-sm font-semibold">{title}</div>
               <button
@@ -47,10 +52,12 @@ export function Modal({
             </div>
           )}
           <div className="p-5">{children}</div>
-          {footer && <div className="p-5 border-t border-stroke2">{footer}</div>}
+          {footer && (
+            <div className="p-5 border-t border-stroke2">{footer}</div>
+          )}
         </div>
       </div>
     </div>,
-    document.body
+    document.body,
   );
 }

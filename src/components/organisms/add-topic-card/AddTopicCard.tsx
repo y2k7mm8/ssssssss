@@ -3,9 +3,20 @@ import { Plus } from "lucide-react";
 import { Input } from "../../atoms/input/Input";
 import { Button } from "../../atoms/button/Button";
 import { Select } from "../../atoms/select/Select";
-import { useItemsStore } from "../../../lib/items-store/ItemsStore";
+import {
+  useItemsStore,
+  ItemCategory,
+} from "../../../lib/items-store/ItemsStore";
 
-const categories = ["Математика", "Английский", "История", "Физика", "IT", "Биология"];
+const categoryMap: Record<string, ItemCategory> = {
+  Математика: "math",
+  Английский: "english",
+  История: "history",
+  Физика: "physics",
+  IT: "it",
+};
+
+const categories = Object.keys(categoryMap);
 
 function isoTodayPlus(days: number) {
   const d = new Date();
@@ -35,7 +46,7 @@ export function AddTopicCard() {
     addItem({
       title: title.trim(),
       description: "",
-      category,
+      category: categoryMap[category],
       dueDate,
       tags: tagList,
       status: "active",
@@ -59,12 +70,19 @@ export function AddTopicCard() {
       <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
         <div className="space-y-1">
           <div className="text-xs text-muted">Название</div>
-          <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Например: Производные" />
+          <Input
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Например: Производные"
+          />
         </div>
 
         <div className="space-y-1">
           <div className="text-xs text-muted">Категория</div>
-          <Select value={category} onChange={(e) => setCategory(e.target.value)}>
+          <Select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
             {categories.map((c) => (
               <option key={c} value={c}>
                 {c}
@@ -75,12 +93,20 @@ export function AddTopicCard() {
 
         <div className="space-y-1">
           <div className="text-xs text-muted">Срок</div>
-          <Input value={dueDate} onChange={(e) => setDueDate(e.target.value)} type="date" />
+          <Input
+            value={dueDate}
+            onChange={(e) => setDueDate(e.target.value)}
+            type="date"
+          />
         </div>
 
         <div className="space-y-1">
           <div className="text-xs text-muted">Теги</div>
-          <Input value={tags} onChange={(e) => setTags(e.target.value)} placeholder="через запятую (алгебра, тест)" />
+          <Input
+            value={tags}
+            onChange={(e) => setTags(e.target.value)}
+            placeholder="через запятую (алгебра, тест)"
+          />
         </div>
       </div>
 
